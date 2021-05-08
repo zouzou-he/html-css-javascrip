@@ -1,0 +1,30 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+    
+        {
+            "name": "Python: day_1.py",
+            "type": "python",
+            "request": "launch",
+            "program": "F:/%E7%A8%8B%E5%BA%8F/vscode/python/spider",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "pwa-chrome",
+            "url": "file:///f:/%E7%A8%8B%E5%BA%8F/vscode/html_studyl",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "file:///f:/%E7%A8%8B%E5%BA%8F/vscode/html_study/day_html.html",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+}

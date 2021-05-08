@@ -1,0 +1,26 @@
+表格标签
+    <table>   
+        <thead>表头</thead>   -->表头 必须有<tr>标签
+        <tbody>                 -->表格主体                
+            <tr>                    -->行
+                <td>单元格内容</td> -->单元格
+            </tr>
+        </tbody>
+    </table> 
+    
+    表格的作用是显示展示数据
+    <th></th>单元格，会加粗并且居中
+    表格的属性（用css弄得）
+        align 规定表格的相对元素的对齐方式 
+        border 加边框
+        cellpadding 像数值 内容和单元格的距离
+        cellspacing 像数值 单元格和单元格的距离
+        width 单元格宽度 
+        height 单元格高度
+    表头<thead></head> -->表头 
+    表格主体 <tbody></tbody>
+
+    合并单元格
+        合并单元格方式：
+            1、跨行合并 rowspan="合并的个数"
+            2、跨列合并 colspan="合并的个数"

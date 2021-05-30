@@ -1,14 +1,5 @@
 #基于python的爬虫学习
-
-#慕课
-
-     scrapy框架
-     数据流向（三个）： 
-
-
-#B站：
      
-    
      Xpath是和re正则表达式功能相识的解析方法
 
      数据库:
@@ -25,6 +16,28 @@
           navicat链接数据库的软件
 
      http和https
+          https和网站证书
+          注意可以通过关闭ssl校验就是关闭get或者post方法的verify参数，就可以证书校验。也可以给这个参数附加证书
+     
+     登录：
+          通过get方法请求登录的页面，没有填写用户和密码
+          通过login查看(不一定都叫这个)，注意输入密码账号后会有第二个
+          第二是通过post请求发送
+           username: zouyongke
+          password: 18316158829
+          _token: PNqdZ8whNZfYDrFg8p0MO5S9XayJhUuO7936MuKI  在第一个请求的respons中set-cookie中就有的
+          _t: 1620896192910  时间戳
+
+          index的包resquest（view parasd）中的cookie信息：
+          Cookie: XSRF-TOKEN=PNqdZ8whNZfYDrFg8p0MO5S9XayJhUuO7936MuKI; laravel_session=tUnWmXWPe0wk6ZUh97oCfdBT3jWjmkd1SanhizeR; account_chinauni=accountchinauni; st_user_token=1b3f4e99ba3c54b3256519918432ecec; account_user=69999915%7Czouyongke%7Chttp%3A%2F%2Fimg.account.itpub.net%2Fhead%2Fuser.jpg%3Fx-oss-process%3Dstyle%2Fm
+
+          request.session（）创建保存信息
+          通过正则表达式对get请求中的请求头进行匹配
+
+     ip代理：
+          快代理的网站
+          1、需要选择代理厂商 快代理是其中之一
+          2、把代理信息设置到代码中 proxy
 
      GET请求 从服务器上获取数据
           GET是把参数数据队列加到提交的表单里面
@@ -40,6 +53,15 @@
            用户看不到这个过程
           服务器端用request.Form获取提交的数据
           post传送的数据比较大，一般没有限制,安全性较高，可以加密
+
+     请求超时：
+          超时参数--timeout=请求限时长
+          通过time模块，查看到时间
+     
+     cookie：
+          注意这个有请求和服务器返回的coolie
+          在返回头里面可以查看一下--set-cookie 或者 cookies查看并获取里面的键值对的数值等信息
+          可以通过dict进行cookie实例化
 
      md5：不可逆加密算法 （用于验证和校验,每个文件可以进行加密）
           用到hashlib库
@@ -58,6 +80,7 @@
           re正则表达式解析以上两种都可以，还有xpath也可以解析，后面去b站学习
      
      (re)正则表达式：
+          complie也是可以
           str是需要匹配的东西
           str2是在里面匹配str
           res=re.match(str，str2)
@@ -82,10 +105,44 @@
           匹配开头和结尾 分组： ^ 和 $  |（跟或的逻辑很相似）
           （）括号可以规划处一个区域进行匹配,还可以在group中
           \的匹配注意，其中作用是转换，要用\\\\才可以匹配。可以在''前直接加r 就可以了
+          匹配分组：
+               " | "          匹配左右任意一个个表达式
+               "(ab)"         将括号中的字符进行一个分组
+               "\num"         引用分组num匹配到的字符串
+               "(?p<name>)"   分组重命名
+               "(?P=name)"    引用别名为name分组匹配到的字符串
+
+     Xpath：
+          lxml库是python中支持xpath的库
+          需要先安装插件xpath helper
+          用来解析html xml文档
+          节点：先辈节点（就是父的父或者更前）、父节点、子节点（子的子或者更后）、兄弟节点、后代节点 （标签的关系）
+          语句：（这些符号后面的标签名或者属性是可以根据需求改变的）
+               1、/div       从根节点开始选取div（第一个节点）
+               2、//a        选取文档中所有的a节点
+               3、@class     选取名为class的属性
+               4、.          选取当前节点
+               5、..         选取当前节点的父节点
+          #获取a标签下的文本
+
+          xpath("//a/text()") # world
+
+          #获取a标签以及子标签中的内容
+
+          xpath("//a//text()") # hello world
+
+          #获取a标签中的连接
+
+          xpath("//a/@href") # www.some.com
+
+          即获取标签属性值 （位置/@属性）
+
+     lxml：
+          
 
      异常处理：
           try:
-          （可能有错的代码）
+          （可能有错的代码） 
           except io error：
                （出错的情况）
 

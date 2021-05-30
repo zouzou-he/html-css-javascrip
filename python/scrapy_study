@@ -1,0 +1,64 @@
+scrapy框架
+框架-约束使用的模板，就是一个架子你可以在上面搭建自己的东西。
+scrapy框架：
+    5+2结构
+    5个模块2个中间键模块
+    数据流有三个路径：
+        1、spider模块--request请求-->engine模块--request请求-->scheuler模块（爬虫请求的调度）
+        2、scheuler模块--requests-->engine模块--request-->downloader模块--response-->engine模块--response-->spider模块
+        3、sipder模块--之前的返回中有需要的url或者items需要爬取的-->engine模块--根据类型将需要访问的发给-->scheuler模块/item pipelines模块
+    整个框架的出口是item pipelines模块,入口是spider模块
+    spider模块 和 item pipelines模块（就是对爬下来的东西进行处理）是需要我们编写（配置）
+
+各个模块的功能：
+    engine模块是各个模块数据流的核心，是框架的核心
+    downloader模块是下载用的，就是将url中有需要的东西进行下载
+    scheuler模块是将请求进行调度
+    downloader middleware中间键是engine模块和downloader模块之间的
+        目的是实施上面三个模块的配置控制（也就是我们可以通过这个中间键的编写可以修改这三个模块中的一些功能，可以修改、增加、丢弃）
+    spider模块是解析downloader返回的响应，产生新的爬取项和额外的请求
+    item pipelines模块是以流水线来处理spider产生的item (数据保存、清理、检测)
+    spider middleware中间键是engine模块和spider模块之间的，对item进行操作
+
+和request库
+    相同点：
+        1、都可以进行爬取和请求页面
+        2、可用性高
+        3、没有处理js、提交表单、对应验证码(可以拓展)
+    不同：
+        一个是框架是一个网站级别是批量的爬取，可以并发，关注于爬虫结构，深度定制结构会限制
+        一个是网页的库是功能库，并发性能不足，关注于页面下载，可以自己定制自己的爬取框架
+
+命令（常用 这些命令都是在当前这个工程的文件路径下执行的）：
+    命令格式 >scrapy<命令>[options][args]
+    创建一个工程： scrapy startproject<name>[dir]
+    创建一个爬虫： scrapy genspider[options]<name>[domain]
+    获取爬虫的配置信息：scrapy setting[options]
+    运行一个爬虫：scrapy crawl<spider>
+    列出工程中的所有爬虫：spider list
+    启动url调试命令行：scrapy shell[url]
+    采用命令行更容易编写自动化脚本进行爬虫
+
+scrapy startproject 工程名 创建工程后，会有生成一个以你在命令中命名的文件夹下其中有一个文件是部署爬虫的文件，另一个同名文件夹（里面是python的文件）
+可以输入命令生成爬虫 （scrapy genspider 爬虫命名 爬虫的网站域名（×。io））
+yield关键字（和生成器） 
+生成器是一个不断产生值的函数
+包含yield的函数是一个生成器
+生成器每次产生一个值（yield语句），函数就会被冻结，被唤醒后在产生一个值（唤醒和冻结的位置是同一个位置）
+一般用for循环调用
+相比一次性列出所有内容更节省内存空间和时间
+
+先写spider解析网站中的href就是url,然后封装好传送给框架，然后写pipline中的类，在配置（setting.py，修改其中的参数，其中的参数是被注释的）中将在这个类添加到框架中
+
+
+下面是stocks.py文件源代码，然后
+# -*- coding: utf-8 -*- import scrapy import re class StocksSpider(scrapy.Spider):     name = "stocks"     start_urls = ['https://quote.eastmoney.com/stocklist.html']     def parse(self, response):         for href in response.css('a::attr(href)').extract():             try:                 stock = re.findall(r"[s][hz]\d{6}", href)[0]                 url = 'https://gupiao.baidu.com/stock/' + stock + '.html'                 yield scrapy.Request(url, callback=self.parse_stock)             except:                 continue     def parse_stock(self, response):         infoDict = {}         stockInfo = response.css('.stock-bets')         name = stockInfo.css('.bets-name').extract()[0]         keyList = stockInfo.css('dt').extract()         valueList = stockInfo.css('dd').extract()         for i in range(len(keyList)):             key = re.findall(r'>.*</dt>', keyList[i])[0][1:-5]             try:                 val = re.findall(r'\d+\.?.*</dd>', valueList[i])[0][0:-5]             except:                 val = '--'             infoDict[key]=val         infoDict.update(             {'股票名称': re.findall('\s.*\(',name)[0].split()[0] + \              re.findall('\>.*\<', name)[0][1:-1]})         yield infoDict
+
+
+下面是pipelines.py文件源代码：
+
+# -*- coding: utf-8 -*- # Define your item pipelines here # # Don't forget to add your pipeline to the ITEM_PIPELINES setting # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html class BaidustocksPipeline(object):     def process_item(self, item, spider):         return item class BaidustocksInfoPipeline(object):     def open_spider(self, spider):         self.f = open('BaiduStockInfo.txt', 'w')     def close_spider(self, spider):         self.f.close()     def process_item(self, item, spider):         try:             line = str(dict(item)) + '\n'             self.f.write(line)         except:             pass         return item
+
+下面是settings.py文件中被修改的区域：
+
+# Configure item pipelines # See https://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html ITEM_PIPELINES = {     'BaiduStocks.pipelines.BaidustocksInfoPipeline': 300, }

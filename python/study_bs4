@@ -1,0 +1,102 @@
+# bs4 第三方 解析html数据的包
+from bs4 import BeautifulSoup
+# lxml 解析读取html的第三方解析器，解析速度快，底层通过C实现
+
+html = open('index.html', 'r', encoding='utf-8')
+
+# 1.网页源代码  2.解析器名称
+bs = BeautifulSoup(html, 'lxml')
+# bs 是BeautifulSoup 的一个对象
+# print(bs)
+# print(bs.prettify())
+
+# 获取某个节点
+# bs4.element.Tag 每一个节点都是一个Tag类的对象
+print(type(bs.title))
+print(bs.head)
+
+# bs.title.name 获取的是标签的名称
+print(type(bs.title.name))
+# bs.title.text 获取标签之间的文本内容
+print(bs.title.text)
+
+# 获取某个标签的属性
+# attrs 获取标签节点的所有属性和值，是一个字典
+print(bs.a.attrs)
+print(bs.a.attrs['href'])
+# 如果一个属性有多个值，该属性值为一个列表
+print(bs.a.attrs['class'])
+# bs4.element.NavigableString 标签节点之间的text文本
+print(type(bs.a.string))
+
+# bs 是将html代码转换为一个Python对象
+# Tag：指的就是HTML中的每一个完整标签节点(包含开始、结束标签)
+# NavigableString 指的就是标签之间的text文本，不包含标签
+
+# contetns 获取某个节点下直接子标签，返回的是一个列表，列表中放的是Tag节点对象
+print(bs.body.contents)
+print(bs.head.contents)
+print(bs.body.contents[1])
+print(type(bs.body.contents[1]))
+
+# 返回的是一个生成器对象
+result = bs.body.children
+# for循环遍历子节点
+# for ele in result:
+    # print(ele)
+
+# 获取所有的子孙节点，包含子节点\内容，子节点的子节点\内容...，返回生成器对象
+# print(list(bs.body.descendants))
+# print('*'*50)
+# for ele in bs.body.descendants:
+#     print(ele)
+
+# 查找节点的父节点
+# print(bs.title.parent)
+# print(bs.title.parent.parent)
+
+# 查找兄弟节点
+print('-'*50)
+# 找到下一个兄弟节点
+print(bs.a.next_sibling.next_sibling)
+# 找上一个兄弟节点
+print(bs.p.previous_sibling.previous_sibling)
+
+
+# 搜索文档树中数据
+# 1.通过标签名，查找标签
+# find_all() 查找符合条件的所有标签，返回列表，列表中存放Tag对象
+res = bs.find_all('p')
+# 可以通过多个标签名进行查找
+res = bs.find_all(['a', 'p', 'span'])
+print(res)
+
+# 2.查找具有唯一性质的标签
+# 通过id查找标签节点,返回节点对象
+res = bs.find(id='bottom')
+print(res)
+# class 在Python是一个关键字  class_代替class使用
+res = bs.find_all(class_='red')
+print(res)
+
+# 2.通过css样式选择器查找标签
+# select_one 返回是节点对象
+res = bs.select_one('#top')
+print(res)
+# select() 返回一个列表，列表中存放所有找到节点对象
+res = bs.select('.red')
+print(res)
+# 如果查找直接子标签 > 大于号两边要有空格
+# ValueError: Unsupported or invalid CSS selector: "p>span"
+res = bs.select('p > span')
+print(res)
+
+res = bs.select('#bottom a')
+print(res)
+
+# 找到整个网页中使用新开窗口打开链接的a标签
+links = bs.select('a[target="_blank"]')
+print(lin
+————————————————
+版权声明：本文为CSDN博主「卡尔诺奇」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/keer1303242749/article/details/86028045

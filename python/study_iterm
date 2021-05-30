@@ -1,0 +1,67 @@
+实战爬取当当网的图书数据
+需求：
+1、图书标题         2、评论数目
+3、推荐百分比       4、作者信息
+5、出版时间         6、出版信息
+7、评分信息         8、图书价格
+9、折扣信息         10、电子书价格
+
+需要根据需求用xpath定位到这些元素
+1、定位所有的图书的标签特性那个列表的标签
+//ul[@class="bang_list clearfix bang_list_mode"]/li
+
+
+2、定位里面的每一项对应的需求
+注意在使用遍历时xpath是要先 .
+//div[@class="name"]/a/text()                           书名
+//div[@class="star"]/a/text()                           评论
+//div[@class="star"]/span[@class="tuijian"]/text()      推荐
+//div[@class="publisher_info"][1]/a/text()              作者
+//div[@class="publisher_info"][2]/span/text（）             出版时间
+//div[@class="publisher_info"][2]/a/text()              出版社
+//div[@class="biaosheng"]/text()                        评分
+//div[@class="price"]/p[1]/span[@class="price_n"]/text()    现价
+//div[@class="price"]//span[@class="price_r"]/text()    原价
+//div[@class="price"]//span[@class="price_s"]/text()    折扣
+//div[@class="price"]/p[@class="price_e"]/text()        电子书价格
+
+3、保存数据到数据库
+pymongo.MogoClien链接上个数据库和通过Navicat的上链接同
+只有库里有内容插入才会创建数据
+插入数据表和文档记录才会有这个数据库出现（记得刷新）
+#链接数据库
+pymongo_client=pymongo.MongoClient("mongodb://127.0.0.1:27017")
+#库名
+pymongo_db=pymongo_client['imooc']
+#创建集合
+pymongo_collection = pymogo_db["pymongo_text"]
+数据库的增加数据：
+    pymongo_collection.insert(q)  q可以是字典列表，这个可以增一或者多
+    pymongo_collection.insert_one(q) q是字典，增加一个
+    pymongo_collection.insert_many(q) q是列表，可以同时加很多个数据
+数据库的查看操作：
+    #会返回游标，可以遍历查看数据（会带有id可以在find{}）
+    result=pymongo_collection.find({},{"_id":0,"name":1,"num":1,"old":1})
+    #print(result)
+    for i in result:
+        print(i)
+
+    #查看1条(第一条)
+    result=pymongo_collection.find_one({},{"_id":0,"name":1,"num":1,"old":1})
+    print(result)
+
+    #限定了某个value值的范围 也可以写正则表达式
+    #result=pymongo_collection.find({'old':{"$gt":"21"}})
+    result=pymongo_collection.find({'old':{"$regex":"."}})
+    for i in result:
+        print(i)
+
+    数据库修改 同前面那个插入数据，有3个可以操作的方法
+        result=pymongo_collection.update_many({'old':{"$regex":"."}},{"$set":{"old":"10"}})
+        resul=pymongo_collection.find({'old':{"$regex":"."}})
+        for i in resul:
+            print(i)
+
+    数据库数据删除 同上也有三个可以操作的方法delete delete_many  delete_one
+        pymongo_collection.delete_many({"name":"某某"})
+

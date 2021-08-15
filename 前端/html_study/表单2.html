@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单元素：输入 下来 文本框 radio同一个name才可多选一</title>
+</head>
+<body>
+    <form >
+        用户名：<input type="text" name="username" value="请输入用户名" maxlength="6">
+        <br>
+        密码：<input type="password" name="password" >
+        <br>
+        <input type="button" value="按钮">
+        <br>
+        性别：男<input type="radio" name="sex" value="男">女<input type="radio" name="sex" value="女">
+        <br>
+        爱好：
+        吃 <input type="checkbox" name="like" value="吃"> 
+        喝<input type="checkbox" name="like" value="喝"> 
+        玩<input type="checkbox" name="like" name="玩"> 
+        <br>
+        <input type="checkbox" name="打钩" name="打钩" checked="checked"> 默认打钩
+    </form>    
+</body>
+</html>

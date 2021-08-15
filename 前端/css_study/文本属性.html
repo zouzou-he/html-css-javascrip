@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文本属性</title>
+   
+    <style>
+        .hehe {
+            /*三种方式 16进制  预定义的颜色值 rgb*/
+            color: blue;
+
+            /*水平对齐*/
+            text-align: center;
+
+        }
+
+         /*装饰文本 上下划线 删除线 none取消下划线*/
+        .under {
+            text-decoration: underline;
+        }
+        .mid {
+            text-decoration: line-through;
+        }
+        .over {
+            text-decoration: overline;
+        }
+
+        /*首行缩进*/
+        .star {
+            /*em 是个单位 相对于当前文本的文字大小*/
+            text-indent: 2em;
+        }
+
+        /*行间距（行高）*/
+        .hang {
+            line-height: 26px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hehe">呵呵笑呵呵</div>
+    <li class="under">呵呵</li>
+    <li class="over">呵呵</li>
+    <li class="mid">呵呵</li>
+
+    <p class="star">基督教的圣人圣·尼古拉斯的衍生形象。</p>
+    <p class="hang">阳春人</p>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础选择器</title>
+
+    <style>
+        /*标签选择器 */
+        p {
+            color: blue;
+        }
+        div {
+            color: red;
+        }
+         
+        /*类选择器*/
+        .red {
+            color: red;
+        }
+        .star-sing {
+            color: blue;
+        }
+
+        /*多类名 一个标签有多个类名 用空格隔开 
+        优点：把一些统一的东西放到统一个类可以修改一个就改变全局*/
+        .hehe {
+            color: blue;
+        }
+        .hh {
+            font-size: 35px;
+        }
+
+        /*id选择器 
+        样式是通过#定义 
+        结构是用id调用
+        只能调用一次*/
+        #hehe {
+            color: cadetblue;
+        }
+
+        /*通配符选择器 把所有的东西都弄成一样的*/
+        
+    </style>
+</head>
+<body>
+    <p>男</p>
+    <p>女</p>
+    <div>我是男生</div>
+    <div>我是女生</div>
+
+    <ul>
+        <li class="red">呵呵</li>
+        <li class="star-sing">咳咳</li>
+        <li class="hehe hh">可可</li>
+    </ul>
+
+    <div id="hehe">zouyongke</div>
+</body>
+</html>

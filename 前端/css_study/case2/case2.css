@@ -1,0 +1,18 @@
+a {
+    display: block;
+    width: 230px;
+    height: 40px;
+
+    text-decoration: none;
+    background-color: #55585a;
+    font-size: 14px;
+
+    color: #fff;
+    text-indent: 2em;
+
+    line-height: 40px;
+}
+a:hover {
+    background-color: #ff6700;
+}
+/*技巧实现垂直居中：就是让文字的行高等于盒子的行高*/

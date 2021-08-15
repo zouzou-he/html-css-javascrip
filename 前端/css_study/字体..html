@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字体</title>
+    <style>
+        /*标题 h  的文字大小需要单独指定*/
+        h2 {
+            font-family: '宋体'; /*字体*/
+            font-size: 36px;  /*大小*/
+            font-weight: 400;  /*让标题不加粗  也可以用normal*/
+        }
+        .min {
+            font-weight: bold;    /*加粗*/
+        }
+        .mid {
+            font-weight: 700;   /*一般用这样的方式实现加粗*/
+        }
+        .max {
+            font-style: italic; /*文字样式 斜体 和em标签一样*/
+           /* font-style: normal; 让倾斜的摆正*/
+        }
+        div {
+            /*复合形式 
+            顺序不可以乱 font-size和font-family必须有的
+            font: font-style font-weight font-size/line-height font-family;
+            */
+            font:  italic 700 40px "宋体";
+            /*
+            font-family: "宋体";
+            font-size: 40px;
+            font-weight: 700;
+            font-style: italic;
+            */
+        }
+    </style>
+</head>
+<body>
+    <h2>呵呵学前端</h2>
+    <p class="max">呵呵今天学习字体</p>
+    <p class="mid">呵呵学会了基础选择器</p>
+    <p class="min">呵呵学会了一些基本的html标签</p>
+    <div>呵呵结合前面</div>
+</body>
+</html>

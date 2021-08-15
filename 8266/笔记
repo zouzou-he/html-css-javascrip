@@ -1,0 +1,145 @@
+void ServoMove(char servo_name,int speed_servo){
+    //起始和目标角度
+  int frompos;
+  int topos;
+  int num=0;
+  int re_pos;
+  switch(servo_name)
+  {
+    case 'x':
+      frompos=xServo.read();
+      topos= frompos+speed_servo;
+      s='x';
+      m=servo_name;
+      pos=topos;
+      if(frompos<=topos)
+    {
+      for(int i=frompos;i<=topos;i++)
+      {
+        xServo.write(i);
+        delay(Delay);
+      }
+    } 
+    else
+    {
+      for(int i=frompos;i>=topos;i--)
+      {
+        xServo.write(i);
+        delay(Delay);
+      }
+    }
+    //记忆
+     if(arm_mode =='b'){
+      sm_pos=speed_servo;
+      rewordPos(l);
+      l=l+1;
+      }
+      break;
+    case 'y':
+      frompos=yServo.read();
+      topos= frompos+speed_servo;
+      s='y';
+      m=servo_name;
+      pos=topos;
+      if(frompos<=topos)
+    {
+      for(int i=frompos;i<=topos;i++)
+      {
+        yServo.write(i);
+        delay(Delay);
+      }
+    } 
+    else
+    {
+      for(int i=frompos;i>=topos;i--)
+      {
+        yServo.write(i);
+        delay(Delay);
+      }
+    }
+    //记忆
+     if(arm_mode =='b'){
+      sm_pos=speed_servo;
+      rewordPos(l);
+      l=l+1;
+      }
+      break;
+    case 'z':
+      frompos=zServo.read();
+      topos= frompos+speed_servo;
+      s='z';
+      m=servo_name;
+      pos=topos;
+      if(frompos<=topos)
+    {
+      for(int i=frompos;i<=topos;i++)
+      {
+        zServo.write(i);
+        delay(Delay);
+      }
+    } 
+    else
+    {
+      for(int i=frompos;i>=topos;i--)
+      {
+        zServo.write(i);
+        delay(Delay);
+      }
+    }
+    //记忆
+     if(arm_mode =='b'){
+      sm_pos=speed_servo;
+      rewordPos(l);
+      l=l+1;
+      }
+      break;
+    case 'e':
+      frompos=eServo.read();
+      topos= frompos+speed_servo;
+      s='e';
+      m=servo_name;
+      pos=topos;
+      if(frompos<=topos)
+    {
+      for(int i=frompos;i<=topos;i++)
+      {
+        eServo.write(i);
+        delay(Delay);
+      }
+    } 
+    else
+    {
+      for(int i=frompos;i>=topos;i--)
+      {
+        eServo.write(i);
+        delay(Delay);
+      }
+    }
+    //记忆
+     if(arm_mode =='b'){
+      sm_pos=speed_servo;
+      rewordPos(l);
+      l=l+1;
+      }
+    break;
+    case 'r':
+    r_pos[0]=yServo.read();
+    r_pos[1]=zServo.read();
+    r_pos[2]=eServo.read();
+    r_pos[3]=xServo.read();
+     re_pos=speed_servo;
+    for(int i=0;i<4;i++){
+      num=re_pos - r_pos[i];
+      if(num>0){
+        ServoMove(name_list[i],-num);
+        }
+       else if (num<=0){
+        ServoMove(name_list[i],num);
+        }
+        delay(500); 
+      }
+    break;
+    default:
+         Serial.println("Unknow cmd.");
+  }  
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>复合选择器(伪类选择器)</title>
+    <style>
+        /*是按下面的顺序执行的不可换位置*/
+        /*a:link 没有被访问的链接*/
+        a:link {
+            color: #333;
+            text-decoration: none;
+        }
+        /*
+        已经访问过的链接 */
+        a:visited{
+            color: yellow;
+        }
+        /*鼠标经过变色*/
+        a:hover {
+            color: green;
+        }
+        /*鼠标按下没点击*/
+       a:active{
+           color: red;
+       }
+    </style>
+</head>
+<body>
+    <a href="#">hehe</a>
+
+</body>
+</html>

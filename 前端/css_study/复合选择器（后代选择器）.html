@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>复合选择器(后代选择器)</title>
+    <style>
+        /*后代选择器
+        选父元素里的子元素*/
+        ol li {
+            color: blue;
+        }
+        .nice li a {
+            color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <ol>
+        <p>20</p>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ol>
+    <ul>
+        <li>6</li>
+    </ul>
+
+    <ul>
+        <li>呵呵呵</li>
+        <li>呵呵</li>
+        <li>和</li>
+        <li><a href="#">呵呵</a></li>
+    </ul>
+    <ul class="nice">
+        <li>呵呵呵</li>
+        <li>呵呵</li>
+        <li>和</li>
+        <li><a href="#">呵呵</a>
+        <a href="#">呵呵</a>
+    </ul>
+</body>
+
+</html>

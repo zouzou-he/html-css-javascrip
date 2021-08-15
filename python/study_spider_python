@@ -137,7 +137,8 @@
 
           即获取标签属性值 （位置/@属性）
 
-     lxml：
+     jsonpath:专门提取json数据
+     首先导入模块，用方法jsonpath（data，‘$..key1’）取出的是key1对应的数值
           
 
      异常处理：

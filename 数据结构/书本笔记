@@ -1,0 +1,79 @@
+   
+    frompos=xServo.read(); //返回舵机当前角度
+    topos=servoData;
+    //判断舵机开始角度和目标角度大小进行速度
+    if(frompos<=topos){
+      for(int i=frompos;i<=topos;i++){
+        xServo.write(i);
+        delay(15);
+      }
+    } 
+    else{
+      for(int i=frompos;i>=topos;i--){
+        xServo.write(i);
+        delay(15);
+      }
+    }
+   }
+
+     /*
+  //在串口输入的首个字母并显示在串口监视器上
+   Serial.print("serialCmd = "); 
+   Serial.print(serialCmd);
+   Serial.print("...");
+   
+ //在串口输入的数字
+  int servoData = Serial.parseInt();
+
+
+
+ //字母事件罗列
+ switch(serialCmd)
+ {
+  case 'x':
+    xpos=servoData;
+    Serial.println("X move to ");
+    Serial.println(servoData);
+    break;
+  case 'y':
+    ypos=servoData;
+    Serial.println("Y move to ");
+    Serial.println(servoData);
+    break;
+  case 'z':
+    zpos=servoData;
+    Serial.println("Z move to ");
+    Serial.println(servoData);
+    break;
+  case 'b':
+    bpos=servoData;
+    Serial.println("B move to ");
+    Serial.println(servoData);
+    break;
+  case 'e':
+    epos=servoData;
+    Serial.println("E move to ");
+    Serial.println(servoData);
+    break;
+  case 'o':
+    reportStatus();
+   break;
+  default:
+    Serial.println("Unknow cmd.");
+  }
+*/
+
+//恢复初始化姿态函数
+void reportStatus()
+{
+  Serial.println("START RE");
+  Serial.println("...");
+  xpos=90;
+  ypos=90;
+  zpos=90;
+  bpos=90;
+  epos=90;
+  Serial.println("FINISH RE");  
+}
+
+/*

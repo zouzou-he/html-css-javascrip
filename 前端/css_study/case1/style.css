@@ -1,0 +1,17 @@
+body {
+    font: 16px/28px '宋体';
+}
+p {
+    text-indent: 2em;
+}
+h1 {
+    font-weight: 400;
+    text-align: center;
+}
+div {
+    text-align: center;
+    color: blue;
+}
+.pic {
+    text-align: center;
+}

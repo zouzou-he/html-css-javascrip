@@ -1,0 +1,17 @@
+h3 {
+    width: 118px;
+    height: 41px;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    text-indent: 4em;
+    line-height: 41px;
+
+    background-image: url(hehe.png);
+    background-position: left center;
+    background-repeat: no-repeat;
+}
+body {
+    background-image: url(big.jpg);
+}

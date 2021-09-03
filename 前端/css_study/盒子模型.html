@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒子模型</title>
+    <style>
+        /* 
+        盒子模型 box model
+        1.边框border   <div class="border"></div>
+            粗细 实虚 颜色 (可分上下左右 边框  border-top:  )
+            边框的会影响盒子的大小 显示的是边框+盒子原始设置的大小
+        2.内边距（边框和内容的距离）padding  
+            padding:上 下 左 右；
+            padding:上下 左右
+            padding:上 左右 下
+            这个也会影响盒子的大小 同上(不指定盒子规格就不会影响)
+        3.内容content  
+        4.外边距（盒子间的距离）margin
+            同内边距
+            (实现块盒子(有宽度 左右为atuo)水平居中)
+
+        */
+        .border {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            /*
+            border-width: 5px;
+            border-style: solid;/*实线*/
+            /*border-style: dashed;/*虚线*/
+            border-style: dotted;
+            /*点线*/
+            border-color: blue;
+
+            /*border: 5px solid blue; (无先后顺序)*/
+
+        }
+        table ,
+        th {
+            border: 1px solid blue;
+            border-collapse: collapse; /*合并相邻的边框*/
+
+            text-align: center;
+        }
+
+        .padding {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 20;
+            padding-right: 20;
+        }
+        .margin {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+
+            margin: 20px 20px;
+        }
+        .zhong {
+            width: 600px;
+            height: 200px;
+            background-color: pink;
+
+            margin: 0px auto;
+        }
+
+    </style>
+</head>
+
+<body>
+    
+    <div class="margin"></div>
+    <div class="margin"></div>
+
+    <div class="zhong"></div>
+</body>
+
+</html>

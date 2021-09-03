@@ -1,0 +1,21 @@
+.nav {
+    height: 41px;
+    border-top: 3px solid #ff8500;
+    border-bottom: 1px solid #fcfcfc;
+    line-height: 41px;
+    background-color: #fcfcfc;
+}
+.nav a {
+    display:inline-block;
+    color: #4c4c4c;
+    text-decoration: none;
+    font-size: 12px;
+    height: 41px;
+    width: 200px;
+    padding: 0 20px;
+    padding-left: 30px;
+}
+.nav a:hover {
+    background-color: #ff8500;
+    color: #fcfcfc;
+}

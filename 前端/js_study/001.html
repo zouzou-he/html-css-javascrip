@@ -6,9 +6,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>js001</title>
     <script>
+
+        //输入输出
+        /*
         prompt("请输入：")
         alert("结果是")
         console.log('程序员能看到的')//控制台打印
+        */
+
+        //变量
+        /*
+        var age;//声明
+        age = 10;//赋值
+        console.log(age);//输出
+
+        var name = prompt('请输入名字：');
+        alert(name);
+        */
+
+        //数据结构
+        /*只有运行的时候才会明确 确认数据的类型*/
+        //简单和复杂 var a=null;
+        //数字型
+        
+        //1.八进制 0开头 (在运行时候会自动转换为8进制)
+        var num1 = 010;
+        console.log(num1);
+        //2.十六进制 0x
+        var num2 = 0xf;
+        console.log(num2);
+        //数字型的范围
+        console.log(Number.MAX_VALUE);
+        console.log(Number.MIN_VALUE);
+        //无穷大 无穷小
+        console.log(Number.MAX_VALUE * 2);
+        console.log(- Number.MAX_VALUE * 2);
+        //NaN 非数字
+        console.log('hehe' - 100);
+        //验证nan （就是是否为非数字）
+        console.log(isNaN('hehe'));
+        console.log(isNaN('12'));
+        //String 双引号里面嵌套单引号（外双内单 外单内双）
+        //字符长度
+        var str = "he he";
+        console.log(str.length);
+        //拼接
+        console.log("呵呵"+"hehe"+18)
+        
+        //布尔型
+        
+        var flag=true;
+        var flag1=false;
+        console.log(flag);
+        console.log(flag1);
+
+        var str;
+        console.log(str);
+        var str1=undefined;
+        console.log(str1);
+        console.log(str1+'hehe');
+        console.log(str1+10);  //nan
+        
+        //查看类型
+        var num=10;
+        console.log(typeof num);
+        var timer=null;
+        console.log(typeof timer);
+ 
+        //转换  布尔转换 只有0 null undefine nan  ''会转换为false 其他都是true
+        var num=100;
+        var str=num.toString()
+        console.log(str);//String(num)
+        console.log(typeof str);
+        console.log(num+''); //通过拼接转字符
+
+        var str2='18'
+        var num3=parseInt(str2);
+        console.log(num3);
+        console.log(parseInt('3.94')); //3
+        console.log(parseInt('120px'));//120
+        console.log(parseInt('rem120px')); //nan
+
+        console.log(parseFloat('3.94')); //3.94
+        console.log(parseFloat('120px')); //120
+        console.log(parseFloat('rem120px')); //nan
+
+        console.log(Number(str2));
+        console.log('13'-0);
+
     </script>
 </head>
 <body>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>嵌套塌陷（外边距）</title>
+    <style>
+        .f {
+            width: 400px;
+            height: 400px;
+            background: pink;
+            margin-top: 50px;
+            /*border: 1px solid transparent;/*1.加边框*/
+            /*padding: 1px; /*2.加内边距*/
+            overflow: hidden;/*3.这是最好的方法不会改变盒子的大小*/
+
+        } 
+        .s {
+            width: 200px;
+            height: 200px;
+            background: blue;
+            margin-top: 100px;
+        }       
+    </style>
+</head>
+<body>
+    <div class="f">
+        <div class="s"></div>
+    </div>
+</body>
+</html>

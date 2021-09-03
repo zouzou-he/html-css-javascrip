@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒子阴影</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            background-color: pink;
+            
+            /*影子： 水平 垂直 模糊（虚实） 尺寸（两个） 颜色   （前面两个必须有的）*/
+            /*正负是右左*/
+            /*默认为外阴影 outset*/
+            /*内阴影inset*/
+
+        }
+        .outset {
+            box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.5);
+        }
+        .inset {
+            box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.5) inset;
+        }
+        /*鼠标经过添加阴影效果*/
+        div:hover {
+            box-shadow: 10px 10px 10px 10px rgba(255, 0, 0, 0.5); ;
+        }
+    </style>
+</head>
+<body>
+    <div class="outset"></div>
+    <div class="inset"></div>
+    <div class="shu"></div>
+</body>
+</html>
